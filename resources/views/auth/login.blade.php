@@ -742,7 +742,7 @@
                             Ingresar
 
                         </button>
-                        <div class="text-center mt-2">También puedes <a href="{{ route('register') }}">registrarte</a></div>
+                        {{-- <div class="text-center mt-2">También puedes <a href="{{ route('register') }}">registrarte</a></div> --}}
                     </form>
 
 

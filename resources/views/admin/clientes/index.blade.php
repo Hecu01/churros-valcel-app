@@ -150,7 +150,7 @@ Clientes - Churros Valcel
                                                     d-flex align-items-center justify-content-center me-3"
                                             style="width: 42px; height: 42px;">
 
-                                            <span class="fw-bold">
+                                            <span class="fw-bold" style="color: #ffff;">
                                                 {{ strtoupper(substr($cliente->nombre, 0, 1)) }}
                                             </span>
 

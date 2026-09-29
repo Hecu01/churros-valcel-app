@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\ClienteController;
 use App\Http\Controllers\Admin\ProductoController;
 use App\Http\Controllers\Admin\VentaController;
 
-Route::get('/admin/inicio', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/inicio', [AdminController::class, 'index'])->name('admin.index');
 
 // Rutas para el CRUD de productos
 Route::get('/productos', [ProductoController::class, 'index'])->name('producto.index');

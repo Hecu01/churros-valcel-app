@@ -43,13 +43,15 @@
 
 
                 {{-- Botón mobile --}}
-                <button class="navbar-toggler border-0 shadow-none"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#menuValcel"
-                        aria-controls="menuValcel"
-                        aria-expanded="false"
-                        aria-label="Abrir menú">
+                <button
+                    class="navbar-toggler border-0 shadow-none p-2 rounded-3"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menuValcel"
+                    aria-controls="menuValcel"
+                    aria-expanded="false"
+                    aria-label="Abrir menú"
+                    style="background-color: #fff5f5;">
 
                     <span class="navbar-toggler-icon"></span>
 
@@ -261,7 +263,7 @@
                             </div>
 
                             {{-- Mensaje --}}
-                            <div class="flex-grow-1">
+                            <div class="grow">
 
                                 <div class="fw-bold">
                                     ¡Listo!
@@ -401,6 +403,56 @@
                 background-color: rgba(255, 255, 255, 0.75);
             }
 
+            .navbar-toggler {
+                width: 46px;
+                height: 46px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                border: 1px solid rgba(125, 31, 36, 0.15) !important;
+
+                transition: all 0.2s ease;
+            }
+
+            .navbar-toggler:hover {
+                background-color: #7d1f24 !important;
+                transform: scale(1.03);
+            }
+
+            .navbar-toggler:active {
+                transform: scale(0.96);
+            }
+
+            /* Ícono hamburguesa */
+            .navbar-toggler-icon {
+                background-image: none;
+                width: 22px;
+                height: 16px;
+                position: relative;
+                border-top: 2px solid #7d1f24;
+                border-bottom: 2px solid #7d1f24;
+            }
+
+            /* Línea central */
+            .navbar-toggler-icon::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 5px;
+                width: 22px;
+                height: 2px;
+                background-color: #7d1f24;
+            }
+
+            /* Al pasar el mouse, líneas blancas */
+            .navbar-toggler:hover .navbar-toggler-icon {
+                border-color: white;
+            }
+
+            .navbar-toggler:hover .navbar-toggler-icon::after {
+                background-color: white;
+            }
         </style>
 
         <script>

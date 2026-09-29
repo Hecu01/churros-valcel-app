@@ -16,7 +16,6 @@ Route::get('/register', [RegisterController::class, 'create'])->name('register')
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
 
 Route::prefix('admin')->middleware('auth')->group(function () 
