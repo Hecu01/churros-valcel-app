@@ -1,33 +1,26 @@
-FROM php:8.4-apache
+FROM php:8.4-fpm-alpine
 
-# Extensiones necesarias para Laravel
-RUN docker-php-ext-install pdo pdo_mysql
+# Instalar dependencias del sistema y herramientas esenciales
+RUN apk add --no-cache nginx wget supervisor zip unzip git openssh bash
 
-# Habilitar mod_rewrite de Apache
-RUN a2enmod rewrite
+# Descargar el instalador automático de extensiones de PHP profesional
+ADD https://github.com /usr/local/bin/
 
-# Configurar Apache para servir Laravel desde /public
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+# Instalar todas las extensiones requeridas nativamente por Laravel
+RUN chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions pdo_mysql pdo_pgsql bcmath zip gd intl opcache redis ctype curl dom fileinfo filter session mbstring xml openssl tokenizer
 
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
-    /etc/apache2/sites-available/*.conf \
-    /etc/apache2/apache2.conf \
-    /etc/apache2/conf-available/*.conf
-
-# Instalar Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
+# Configurar directorio de trabajo
 WORKDIR /var/www/html
-
-# Copiar proyecto
 COPY . .
 
-# Instalar dependencias PHP
-RUN composer install --no-dev --optimize-autoloader
+# Instalar Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Permisos necesarios para Laravel
-RUN chown -R www-data:www-data storage bootstrap/cache
+# Instalar dependencias de PHP ignorando requisitos de plataforma por seguridad en la build de Docker
+RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
-EXPOSE 80
+# Permisos requeridos para Laravel
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-CMD ["apache2-foreground"]
+CMD ["sh", "-c", "php artisan migrate --force && php artisan config:cache && php artisan route:cache && nginx -g 'daemon off;'"]
