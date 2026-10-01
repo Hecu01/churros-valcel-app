@@ -11,6 +11,10 @@
         {{-- Font Awesome --}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
         <title>@yield('title')</title>
+        
+        {{-- Para instalar la app web desde chrome --}}
+        <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
+        <meta name="theme-color" content="#7d1f24">
     </head>
     <body>
         <nav id="navbarValcel"
@@ -470,6 +474,18 @@
 
             });
 
+            // Registrar el Service Worker para permitir la instalación de la app web desde Chrome
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(registration => {
+                            console.log('Service Worker registrado:', registration);
+                        })
+                        .catch(error => {
+                            console.error('Error registrando Service Worker:', error);
+                        });
+                });
+            }
         </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>

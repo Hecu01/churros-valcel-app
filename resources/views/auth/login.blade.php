@@ -11,6 +11,10 @@
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+
+        {{-- Para instalar la app web desde chrome --}}
+        <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
+        <meta name="theme-color" content="#7d1f24">
         <style>
             :root {
                 --valcel-red: #8d1818;
@@ -785,7 +789,19 @@
                 }
 
             }
-
+            
+            // Registrar el Service Worker para permitir la instalación de la app web desde Chrome
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(registration => {
+                            console.log('Service Worker registrado:', registration);
+                        })
+                        .catch(error => {
+                            console.error('Error registrando Service Worker:', error);
+                        });
+                });
+            }
         </script>
 
     </body>

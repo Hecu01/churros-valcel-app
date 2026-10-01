@@ -1,0 +1,711 @@
+:root {
+    --valcel-red: #7d1f24;
+    --valcel-red-dark: #5f171b;
+    --valcel-blue: #9edce5;
+    --valcel-blue-dark: #176b78;
+    --valcel-cream: #fffaf0;
+    --valcel-green: #159447;
+    --valcel-text: #24343b;
+    --valcel-white: #ffffff;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    margin: 0;
+    font-family: "DM Sans", sans-serif;
+    color: var(--valcel-text);
+    background: var(--valcel-cream);
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar-valcel {
+    background: rgba(255, 250, 240, 0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(125, 31, 36, 0.08);
+}
+
+
+.brand-logo {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+
+.brand-text strong {
+    font-family: "Pacifico", cursive;
+    color: var(--valcel-red);
+    font-size: 1.5rem;
+}
+
+
+.brand-text small {
+    margin-top: 6px;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--valcel-blue-dark);
+}
+
+
+.nav-link {
+    color: var(--valcel-text);
+    font-weight: 600;
+    margin: 0 8px;
+    position: relative;
+}
+
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--valcel-red);
+}
+
+
+.nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    height: 3px;
+    background: var(--valcel-red);
+    border-radius: 10px;
+}
+
+
+/* =========================
+   BOTONES
+========================= */
+
+.btn-whatsapp {
+    background: var(--valcel-green);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 22px;
+    font-weight: 700;
+    transition: 0.25s ease;
+}
+
+
+.btn-whatsapp:hover {
+    background: #107c3a;
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+.btn-whatsapp i {
+    margin-right: 6px;
+}
+
+
+.btn-outline-valcel {
+    border: 2px solid var(--valcel-text);
+    color: var(--valcel-text);
+    border-radius: 50px;
+    padding: 12px 22px;
+    font-weight: 700;
+}
+
+
+.btn-outline-valcel:hover {
+    background: var(--valcel-red);
+    border-color: var(--valcel-red);
+    color: white;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+    background:
+        linear-gradient(
+            110deg,
+            var(--valcel-blue) 0%,
+            #d9f2f3 45%,
+            var(--valcel-cream) 100%
+        );
+    overflow: hidden;
+}
+
+
+.hero-badge {
+    display: inline-block;
+    background: var(--valcel-red);
+    color: white;
+    padding: 7px 20px;
+    border-radius: 5px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transform: rotate(-2deg);
+    margin-bottom: 20px;
+}
+
+
+.hero h1 {
+    color: var(--valcel-red);
+    font-family: "Pacifico", cursive;
+    font-size: clamp(2.7rem, 5vw, 5rem);
+    line-height: 1.15;
+}
+
+
+.hero h1 span {
+    display: block;
+}
+
+
+.hero-text {
+    font-size: 1.25rem;
+    max-width: 540px;
+    color: #24454e;
+    margin: 25px 0;
+}
+
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+
+.hero-image-wrapper {
+    position: relative;
+}
+
+
+.hero-image {
+    width: 100%;
+    min-height: 400px;
+    object-fit: cover;
+    border-radius: 35px;
+    box-shadow: 0 25px 60px rgba(70, 30, 20, 0.18);
+}
+
+
+.dulce-badge {
+    position: absolute;
+    bottom: -25px;
+    left: 30px;
+    max-width: 260px;
+    background: var(--valcel-red);
+    color: white;
+    padding: 18px 24px;
+    border-radius: 18px;
+    transform: rotate(-2deg);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+.dulce-badge strong,
+.dulce-badge span,
+.dulce-badge small {
+    display: block;
+}
+
+
+.dulce-badge span {
+    font-size: 1.7rem;
+    font-weight: 800;
+}
+
+
+.dulce-badge small {
+    opacity: 0.9;
+}
+
+
+/* =========================
+   SECCIONES
+========================= */
+
+.products-section {
+    padding: 100px 0;
+    background: var(--valcel-cream);
+}
+
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+
+.section-heading h2 {
+    color: var(--valcel-red);
+    font-family: "Pacifico", cursive;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 8px;
+}
+
+
+.section-heading span {
+    color: var(--valcel-blue-dark);
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   PRODUCTOS
+========================= */
+
+.product-card {
+    height: 100%;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(70, 30, 20, 0.09);
+    transition: 0.3s ease;
+}
+
+
+.product-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 18px 35px rgba(70, 30, 20, 0.14);
+}
+
+
+.product-card > img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+
+.product-content {
+    padding: 22px;
+}
+
+
+.product-content h3 {
+    color: var(--valcel-red);
+    font-weight: 800;
+}
+
+
+.price {
+    color: var(--valcel-red);
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+
+.product-content p {
+    color: #68767b;
+    min-height: 45px;
+}
+
+
+/* =========================
+   COMO PEDIR
+========================= */
+
+.how-section {
+    padding: 100px 0;
+    background: var(--valcel-blue);
+}
+
+
+.step-card {
+    position: relative;
+    padding: 30px;
+}
+
+
+.step-number {
+    font-weight: 900;
+    color: var(--valcel-red);
+    font-size: 0.9rem;
+}
+
+
+.step-icon {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto;
+    border-radius: 50%;
+    background: white;
+    color: var(--valcel-green);
+    font-size: 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+.step-card h3 {
+    color: var(--valcel-red);
+    font-weight: 800;
+}
+
+
+.step-card p {
+    max-width: 250px;
+    margin: auto;
+}
+
+
+/* =========================
+   WHATSAPP
+========================= */
+
+.whatsapp-section {
+    padding: 60px 0;
+    background: var(--valcel-cream);
+}
+
+
+.whatsapp-box {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    background: var(--valcel-blue-dark);
+    color: white;
+    padding: 30px 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+
+.whatsapp-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: white;
+    color: var(--valcel-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+}
+
+
+.whatsapp-box h2 {
+    margin: 0;
+    font-weight: 800;
+}
+
+
+.whatsapp-box p {
+    margin: 5px 0 0;
+}
+
+
+.whatsapp-number {
+    margin-left: auto;
+    background: #55c993;
+    padding: 12px 22px;
+    border-radius: 50px;
+    font-weight: 800;
+}
+
+
+/* =========================
+   DELIVERY
+========================= */
+
+.delivery-section {
+    padding: 70px 0;
+    background: white;
+}
+
+
+.delivery-main {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.delivery-icon {
+    font-size: 3rem;
+}
+
+
+.delivery-main h3 {
+    color: var(--valcel-red);
+    font-weight: 800;
+}
+
+
+.info-card {
+    height: 100%;
+    display: flex;
+    gap: 20px;
+    padding: 25px;
+    border-radius: 20px;
+    background: #edfafa;
+}
+
+
+.info-card > i {
+    color: var(--valcel-blue-dark);
+    font-size: 2rem;
+}
+
+
+.info-card h4 {
+    color: var(--valcel-red);
+    font-weight: 800;
+}
+
+
+.info-card p {
+    margin-bottom: 5px;
+}
+
+
+/* =========================
+   INSTAGRAM
+========================= */
+
+.instagram-section {
+    padding: 80px 0;
+    background: var(--valcel-cream);
+}
+
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+
+.gallery img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+
+.instagram-content span {
+    color: var(--valcel-red);
+    font-family: "Pacifico", cursive;
+    font-size: 1.7rem;
+}
+
+
+.instagram-content h2 {
+    color: var(--valcel-red);
+    font-weight: 800;
+    margin: 15px 0 25px;
+}
+
+
+.btn-instagram {
+    background: var(--valcel-red);
+    color: white;
+    border-radius: 50px;
+    padding: 12px 25px;
+    font-weight: 700;
+}
+
+
+.btn-instagram:hover {
+    background: var(--valcel-red-dark);
+    color: white;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    padding: 45px 0;
+    background: var(--valcel-red);
+    color: white;
+}
+
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.footer-brand img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    background: white;
+    border-radius: 50%;
+}
+
+
+.footer-brand strong,
+.footer-brand small {
+    display: block;
+}
+
+
+.footer-brand strong {
+    font-family: "Pacifico", cursive;
+    font-size: 1.5rem;
+}
+
+
+.footer-brand small {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+}
+
+
+.footer-thanks {
+    font-family: "Pacifico", cursive;
+    font-size: 1.6rem;
+}
+
+
+.footer-social {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    color: var(--valcel-red);
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 991px) {
+
+    .navbar-collapse {
+        padding: 20px 0;
+    }
+
+    .nav-link {
+        padding: 12px 0;
+    }
+
+    .hero {
+        padding: 60px 0 90px;
+    }
+
+    .hero-image-wrapper {
+        margin-top: 30px;
+    }
+
+    .whatsapp-number {
+        margin-left: 0;
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .brand-logo {
+        width: 52px;
+        height: 52px;
+    }
+
+    .brand-text strong {
+        font-size: 1.2rem;
+    }
+
+    .hero h1 {
+        font-size: 2.7rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .hero-image {
+        min-height: 280px;
+    }
+
+    .dulce-badge {
+        left: 15px;
+        bottom: -30px;
+    }
+
+    .whatsapp-box {
+        padding: 25px;
+    }
+
+    .whatsapp-number {
+        width: 100%;
+        text-align: center;
+    }
+
+    .whatsapp-box .btn {
+        width: 100%;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .gallery img:last-child {
+        display: none;
+    }
+
+    .footer {
+        text-align: center;
+    }
+
+    .footer-brand {
+        justify-content: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+}
