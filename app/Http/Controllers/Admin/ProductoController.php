@@ -37,7 +37,7 @@ class ProductoController extends Controller
         Producto::create($datos);
 
         return redirect()
-            ->route('productos.index')
+            ->route('producto.index')
             ->with('success', 'Producto creado exitosamente.');
     }
 
@@ -46,10 +46,7 @@ class ProductoController extends Controller
     {
         $producto = Producto::findOrFail($id);
 
-        return view(
-            'admin.productos.show',
-            compact('producto')
-        );
+        return view('admin.productos.show',compact('producto'));
     }
 
 
@@ -57,10 +54,7 @@ class ProductoController extends Controller
     {
         $producto = Producto::findOrFail($id);
 
-        return view(
-            'admin.productos.edit',
-            compact('producto')
-        );
+        return view('admin.productos.edit',compact('producto'));
     }
 
 

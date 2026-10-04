@@ -36,30 +36,17 @@ class VentaController extends Controller
     public function store(Request $request)
     {
         $datos = $request->validate([
-
             'cliente_id' => 'nullable|exists:clientes,id',
-
             'costo_envio' => 'required|numeric|min:0',
-
             'descuento' => 'required|numeric|min:0',
-
             'medio_pago' => 'required|in:efectivo,transferencia',
-
             'estado' => 'required|in:completada,pendiente,cancelada',
-
             'observaciones' => 'nullable|string|max:1000',
-
             'fecha' => 'required|date',
-
             'hora' => 'required|date_format:H:i',
-
             'detalles' => 'required|array|min:1',
-
-            'detalles.*.producto_id' =>
-                'required|exists:productos,id',
-
-            'detalles.*.cantidad' =>
-                'required|integer|min:1',
+            'detalles.*.producto_id' => 'required|exists:productos,id',
+            'detalles.*.cantidad' => 'required|integer|min:1',
         ]);
 
 
@@ -67,10 +54,7 @@ class VentaController extends Controller
         // UNIR FECHA Y HORA
         // ==========================================
 
-        $fechaHora =
-            $datos['fecha'] . ' ' . $datos['hora'] . ':00';
-
-
+        $fechaHora = $datos['fecha'] . ' ' . $datos['hora'] . ':00';
         DB::transaction(function () use ($datos, $fechaHora) {
 
             $subtotal = 0;
@@ -194,12 +178,7 @@ class VentaController extends Controller
         });
 
 
-        return redirect()
-            ->route('ventas.index')
-            ->with(
-                'success',
-                'Venta registrada correctamente.'
-            );
+        return redirect()->route('venta.index')->with('success','Venta registrada correctamente.');
     }
 
     public function ticket(Venta $venta)

@@ -45,8 +45,7 @@
 
             <div class="card-body p-4 p-md-5">
 
-                <form method="POST"
-                    action="{{ route('cliente.store') }}">
+                <form method="POST" action="{{ route('cliente.store') }}">
 
                     @csrf
 
