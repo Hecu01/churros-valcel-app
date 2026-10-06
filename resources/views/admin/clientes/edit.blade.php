@@ -1,246 +1,347 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
 @section('title')
-    Editar cliente - Churros Valcel
+Editar cliente - Churros Valcel
 @endsection
 
 @section('content')
 
-<div class="container py-5">
+<div class="admin-page">
 
-    <div class="row justify-content-center">
+{{-- ENCABEZADO --}}
+<div class="page-header">
 
-        <div class="col-lg-8 col-xl-7">
+    <div>
+        <div class="page-eyebrow">
+            CLIENTES
+        </div>
 
-            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+        <h1>Editar cliente</h1>
 
-                {{-- Encabezado --}}
-                <div class="p-4 text-white"
-                     style="background: linear-gradient(135deg, #212529, #343a40);">
+        <p>
+            Actualizá los datos de {{ $cliente->nombre }} {{ $cliente->apellido }}
+        </p>
+    </div>
 
-                    <div class="d-flex align-items-center">
+    <div class="page-header-action">
 
-                        <div class="bg-white text-dark rounded-circle d-flex align-items-center justify-content-center me-3"
-                             style="width: 55px; height: 55px; font-size: 25px;">
-                            👤
-                        </div>
+        <a href="{{ route('cliente.index') }}"
+           class="btn-admin-primary"
+           style="background: #687791;">
 
-                        <div>
-                            <h2 class="fw-bold mb-1">
-                                Editar cliente
-                            </h2>
+            <i class="fa-solid fa-arrow-left"></i>
 
-                            <p class="mb-0 opacity-75">
-                                Actualizá los datos de {{ $cliente->nombre }} {{ $cliente->apellido }}
-                            </p>
-                        </div>
+            Volver a clientes
 
-                    </div>
+        </a>
 
+    </div>
+
+</div>
+
+
+{{-- PANEL --}}
+<div class="admin-panel">
+
+    <form method="POST"
+          action="{{ route('cliente.update', $cliente->id) }}">
+
+        @csrf
+        @method('PUT')
+
+
+        {{-- DATOS PERSONALES --}}
+        <div class="mb-4">
+
+            <div class="d-flex align-items-center gap-3 mb-4">
+
+                <div
+                    style="
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 12px;
+                        background: #eaf0ff;
+                        color: #315bd6;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 21px;
+                    "
+                >
+                    <i class="fa-solid fa-user"></i>
                 </div>
 
+                <div>
 
-                {{-- Formulario --}}
-                <div class="card-body p-4 p-md-5">
+                    <h5 class="mb-1 fw-bold"
+                        style="color: var(--valcel-text);">
 
-                    <form method="POST"
-                          action="{{ route('cliente.update', $cliente->id) }}">
+                        Datos personales
 
-                        @csrf
-                        @method('PUT')
+                    </h5>
 
+                    <span style="color: var(--valcel-muted); font-size: 14px;">
 
-                        {{-- Datos personales --}}
-                        <div class="mb-4">
+                        Información básica del cliente
 
-                            <h5 class="fw-bold mb-3">
-                                <span class="me-2">🧑</span>
-                                Datos personales
-                            </h5>
-
-                            <div class="row g-3">
-
-                                <div class="col-md-6">
-
-                                    <label for="nombre" class="form-label fw-semibold">
-                                        Nombre
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        class="form-control form-control-lg rounded-3"
-                                        name="nombre"
-                                        id="nombre"
-                                        value="{{ $cliente->nombre }}"
-                                        required
-                                    >
-
-                                </div>
-
-
-                                <div class="col-md-6">
-
-                                    <label for="apellido" class="form-label fw-semibold">
-                                        Apellido
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        class="form-control form-control-lg rounded-3"
-                                        name="apellido"
-                                        id="apellido"
-                                        value="{{ $cliente->apellido }}"
-                                        required
-                                    >
-
-                                </div>
-
-
-                                <div class="col-md-6">
-
-                                    <label for="telefono" class="form-label fw-semibold">
-                                        Teléfono
-                                    </label>
-
-                                    <input
-                                        type="number"
-                                        class="form-control form-control-lg rounded-3"
-                                        name="telefono"
-                                        id="telefono"
-                                        placeholder="3364123456"
-                                        value="{{ $cliente->telefono }}"
-                                    >
-
-                                </div>
-
-
-                                <div class="col-md-6">
-
-                                    <label for="compras_realizadas" class="form-label fw-semibold">
-                                        Compras realizadas
-                                    </label>
-
-                                    <input
-                                        type="number"
-                                        class="form-control form-control-lg rounded-3"
-                                        name="compras_realizadas"
-                                        id="compras_realizadas"
-                                        value="{{ $cliente->compras_realizadas }}"
-                                        min="0"
-                                    >
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <hr class="my-4">
-
-
-                        {{-- Dirección --}}
-                        <div class="mb-4">
-
-                            <h5 class="fw-bold mb-3">
-                                <span class="me-2">📍</span>
-                                Información de entrega
-                            </h5>
-
-                            <div class="row g-3">
-
-                                <div class="col-12">
-
-                                    <label for="direccion" class="form-label fw-semibold">
-                                        Dirección
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        class="form-control form-control-lg rounded-3"
-                                        name="direccion"
-                                        id="direccion"
-                                        placeholder="Ej: Gutemberg 123"
-                                        value="{{ $cliente->direccion }}"
-                                    >
-
-                                </div>
-
-
-                                <div class="col-md-6">
-
-                                    <label for="barrio" class="form-label fw-semibold">
-                                        Barrio
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        class="form-control form-control-lg rounded-3"
-                                        name="barrio"
-                                        id="barrio"
-                                        placeholder="Ej: Yaguaron"
-                                        value="{{ $cliente->barrio }}"
-                                    >
-
-                                </div>
-
-
-                                <div class="col-md-6">
-
-                                    <label for="zona" class="form-label fw-semibold">
-                                        Zona
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        class="form-control form-control-lg rounded-3"
-                                        name="zona"
-                                        id="zona"
-                                        placeholder="Ej: Norte"
-                                        value="{{ $cliente->zona }}"
-                                    >
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        {{-- Botones --}}
-                        <div class="d-flex flex-column flex-sm-row justify-content-end gap-2 mt-4">
-
-                            <a
-                                href="{{ route('cliente.index') }}"
-                                class="btn btn-outline-secondary btn-lg rounded-3 px-4"
-                            >
-                                ← Cancelar
-                            </a>
-
-                            <button
-                                type="submit"
-                                class="btn btn-success btn-lg rounded-3 px-4 fw-semibold"
-                            >
-                                ✓ Guardar cambios
-                            </button>
-
-                        </div>
-
-                    </form>
+                    </span>
 
                 </div>
 
             </div>
 
 
-            {{-- Información inferior --}}
-            <div class="text-center text-muted mt-3 small">
-                Cliente #{{ $cliente->id }} · Churros Valcel
+            <div class="row g-3">
+
+                <div class="col-md-6">
+
+                    <label for="nombre"
+                           class="form-label fw-semibold"
+                           style="color: var(--valcel-text);">
+
+                        Nombre
+
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="nombre"
+                        id="nombre"
+                        value="{{ $cliente->nombre }}"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <label for="apellido"
+                           class="form-label fw-semibold"
+                           style="color: var(--valcel-text);">
+
+                        Apellido
+
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="apellido"
+                        id="apellido"
+                        value="{{ $cliente->apellido }}"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <label for="telefono"
+                           class="form-label fw-semibold"
+                           style="color: var(--valcel-text);">
+
+                        Teléfono
+
+                    </label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="telefono"
+                        id="telefono"
+                        placeholder="3364123456"
+                        value="{{ $cliente->telefono }}"
+                    >
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <label for="compras_realizadas"
+                           class="form-label fw-semibold"
+                           style="color: var(--valcel-text);">
+
+                        Compras realizadas
+
+                    </label>
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="compras_realizadas"
+                        id="compras_realizadas"
+                        value="{{ $cliente->compras_realizadas }}"
+                        min="0"
+                    >
+
+                </div>
+
             </div>
 
         </div>
 
-    </div>
+
+        <hr class="my-4"
+            style="border-color: #e9edf4;">
+
+
+        {{-- INFORMACIÓN DE ENTREGA --}}
+        <div class="mb-4">
+
+            <div class="d-flex align-items-center gap-3 mb-4">
+
+                <div
+                    style="
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 12px;
+                        background: #e8f8f1;
+                        color: #20a873;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 21px;
+                    "
+                >
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+
+                <div>
+
+                    <h5 class="mb-1 fw-bold"
+                        style="color: var(--valcel-text);">
+
+                        Información de entrega
+
+                    </h5>
+
+                    <span style="color: var(--valcel-muted); font-size: 14px;">
+
+                        Dirección y ubicación del cliente
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="row g-3">
+
+                <div class="col-12">
+
+                    <label for="direccion"
+                           class="form-label fw-semibold"
+                           style="color: var(--valcel-text);">
+
+                        Dirección
+
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="direccion"
+                        id="direccion"
+                        placeholder="Ej: Gutemberg 123"
+                        value="{{ $cliente->direccion }}"
+                    >
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <label for="barrio"
+                           class="form-label fw-semibold"
+                           style="color: var(--valcel-text);">
+
+                        Barrio
+
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="barrio"
+                        id="barrio"
+                        placeholder="Ej: Yaguaron"
+                        value="{{ $cliente->barrio }}"
+                    >
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <label for="zona"
+                           class="form-label fw-semibold"
+                           style="color: var(--valcel-text);">
+
+                        Zona
+
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="zona"
+                        id="zona"
+                        placeholder="Ej: Norte"
+                        value="{{ $cliente->zona }}"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {{-- ACCIONES --}}
+        <div class="d-flex flex-column flex-sm-row justify-content-end gap-2 mt-5">
+
+            <a
+                href="{{ route('cliente.index') }}"
+                class="btn btn-outline-secondary px-4 d-inline-flex align-items-center justify-content-center"
+                style="border-radius: 10px;"
+            >
+                <i class="fa-solid fa-xmark me-1"></i>
+                Cancelar
+            </a>
+
+            <button
+                type="submit"
+                class="btn-admin-primary px-4"
+            >
+                <i class="fa-solid fa-check"></i>
+                Guardar cambios
+            </button>
+
+        </div>
+    </form>
+
+</div>
+
+
+{{-- INFORMACIÓN --}}
+<div class="admin-page-footer">
+
+    <span>
+        Cliente #{{ $cliente->id }}
+    </span>
+
+    <span>·</span>
+
+    <span>
+        Churros Valcel
+    </span>
+
+</div>
 
 </div>
 

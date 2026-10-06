@@ -1,124 +1,144 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
 @section('title')
-    Crear Producto
+Nuevo producto - Churros Valcel
 @endsection
 
 @section('content')
 
-<div class="container py-5">
+    <div class="admin-page">
 
-    {{-- Encabezado --}}
-    <div class="mb-4">
-
-        <div class="d-flex align-items-center gap-3">
-
-            <div class="icono-producto">
-                🍩
-            </div>
+        {{-- ENCABEZADO --}}
+        <div class="page-header">
 
             <div>
-                <h2 class="fw-bold mb-1" style="color: #7d1f24;">
-                    Nuevo producto
-                </h2>
 
-                <p class="text-muted mb-0">
+                <div class="page-eyebrow">
+                    PRODUCTOS
+                </div>
+
+                <h1>
+                    Nuevo producto
+                </h1>
+
+                <p>
                     Agregá un nuevo producto al catálogo de Churros Valcel.
                 </p>
+
+            </div>
+
+
+            <div class="page-header-action">
+
+                <a
+                    href="{{ route('producto.index') }}"
+                    class="btn-admin-primary"
+                    style="background: #687791;"
+                >
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Volver a productos
+
+                </a>
+
             </div>
 
         </div>
 
-    </div>
 
+        {{-- FORMULARIO --}}
+        <div class="admin-panel">
 
-    {{-- Formulario --}}
-    <div class="card border-0 shadow-sm rounded-4">
-
-        <div class="card-body p-4 p-md-5">
-
-            <form method="POST"
-                  action="{{ route('producto.store') }}">
+            <form
+                method="POST"
+                action="{{ route('producto.store') }}"
+            >
 
                 @csrf
 
 
                 <div class="row g-4">
 
-
-                    {{-- Nombre --}}
+                    {{-- NOMBRE --}}
                     <div class="col-md-6">
 
-                        <label for="nombre"
-                               class="form-label fw-semibold">
-
+                        <label
+                            for="nombre"
+                            class="form-label fw-semibold"
+                        >
                             Nombre del producto
-
                         </label>
 
-                        <input type="text"
-                               class="form-control form-control-lg"
-                               name="nombre"
-                               id="nombre"
-                               value="{{ old('nombre') }}"
-                               placeholder="Ej: Docena rellena"
-                               required>
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="nombre"
+                            id="nombre"
+                            value="{{ old('nombre') }}"
+                            placeholder="Ej: Docena rellena"
+                            required
+                        >
 
                     </div>
 
 
-                    {{-- Precio --}}
+                    {{-- PRECIO --}}
                     <div class="col-md-6">
 
-                        <label for="precio"
-                               class="form-label fw-semibold">
-
+                        <label
+                            for="precio"
+                            class="form-label fw-semibold"
+                        >
                             Precio
-
                         </label>
 
-                        <div class="input-group input-group-lg">
+                        <div class="input-group">
 
-                            <span class="input-group-text bg-light">
+                            <span class="input-group-text">
                                 $
                             </span>
 
-                            <input type="number"
-                                   class="form-control"
-                                   name="precio"
-                                   id="precio"
-                                   value="{{ old('precio') }}"
-                                   placeholder="6500"
-                                   min="0"
-                                   step="0.01"
-                                   required>
+                            <input
+                                type="number"
+                                class="form-control"
+                                name="precio"
+                                id="precio"
+                                value="{{ old('precio') }}"
+                                placeholder="6500"
+                                min="0"
+                                step="0.01"
+                                required
+                            >
 
                         </div>
 
                     </div>
 
 
-                    {{-- Descripción --}}
+                    {{-- DESCRIPCIÓN --}}
                     <div class="col-12">
 
-                        <label for="descripcion"
-                               class="form-label fw-semibold">
-
+                        <label
+                            for="descripcion"
+                            class="form-label fw-semibold"
+                        >
                             Descripción
-
                         </label>
 
-                        <textarea class="form-control"
-                                  name="descripcion"
-                                  id="descripcion"
-                                  rows="3"
-                                  placeholder="Describí brevemente el producto..."
-                                  required>{{ old('descripcion') }}</textarea>
+                        <textarea
+                            class="form-control"
+                            name="descripcion"
+                            id="descripcion"
+                            rows="4"
+                            placeholder="Describí brevemente el producto..."
+                            required
+                        >{{ old('descripcion') }}</textarea>
 
                     </div>
 
 
-                    {{-- Estado --}}
+                    {{-- ESTADO --}}
                     <div class="col-12">
 
                         <label class="form-label fw-semibold mb-3">
@@ -128,31 +148,40 @@
 
                         <div class="row g-3">
 
-                            {{-- Activo --}}
+                            {{-- ACTIVO --}}
                             <div class="col-md-6">
 
-                                <input type="radio"
-                                       class="btn-check"
-                                       name="activo"
-                                       id="activo"
-                                       value="1"
-                                       {{ old('activo', 1) == 1 ? 'checked' : '' }}>
+                                <input
+                                    type="radio"
+                                    class="btn-check"
+                                    name="activo"
+                                    id="activo"
+                                    value="1"
+                                    {{ old('activo', 1) == 1 ? 'checked' : '' }}
+                                >
 
-                                <label class="estado-option activo"
-                                       for="activo">
+                                <label
+                                    class="product-status-option active-option"
+                                    for="activo"
+                                >
 
-                                    <div class="estado-icon">
-                                        ✓
+                                    <div class="product-status-icon">
+
+                                        <i class="fa-solid fa-circle-check"></i>
+
                                     </div>
 
+
                                     <div>
+
                                         <strong>
                                             Producto activo
                                         </strong>
 
-                                        <small class="d-block text-muted">
+                                        <small class="d-block">
                                             Disponible para realizar ventas.
                                         </small>
+
                                     </div>
 
                                 </label>
@@ -160,31 +189,40 @@
                             </div>
 
 
-                            {{-- Inactivo --}}
+                            {{-- INACTIVO --}}
                             <div class="col-md-6">
 
-                                <input type="radio"
-                                       class="btn-check"
-                                       name="activo"
-                                       id="inactivo"
-                                       value="0"
-                                       {{ old('activo') === '0' ? 'checked' : '' }}>
+                                <input
+                                    type="radio"
+                                    class="btn-check"
+                                    name="activo"
+                                    id="inactivo"
+                                    value="0"
+                                    {{ old('activo') === '0' ? 'checked' : '' }}
+                                >
 
-                                <label class="estado-option inactivo"
-                                       for="inactivo">
+                                <label
+                                    class="product-status-option inactive-option"
+                                    for="inactivo"
+                                >
 
-                                    <div class="estado-icon">
-                                        ×
+                                    <div class="product-status-icon">
+
+                                        <i class="fa-solid fa-circle-xmark"></i>
+
                                     </div>
 
+
                                     <div>
+
                                         <strong>
                                             Producto inactivo
                                         </strong>
 
-                                        <small class="d-block text-muted">
+                                        <small class="d-block">
                                             No estará disponible para ventas.
                                         </small>
+
                                     </div>
 
                                 </label>
@@ -196,30 +234,44 @@
                     </div>
 
 
-                    {{-- Separador --}}
+                    {{-- SEPARADOR --}}
                     <div class="col-12">
 
-                        <hr class="my-2">
+                        <hr style="border-color: #e9edf4;">
 
                     </div>
 
 
-                    {{-- Botones --}}
-                    <div class="col-12 d-flex flex-column flex-sm-row gap-2 justify-content-end">
+                    {{-- BOTONES --}}
+                    <div class="col-12">
 
-                        <a href="{{ route('producto.index') }}"
-                           class="btn btn-light border rounded-3 px-4">
+                        <div class="d-flex flex-column flex-sm-row justify-content-end gap-2">
 
-                            ← Regresar
+                            <a
+                                href="{{ route('producto.index') }}"
+                                class="btn btn-outline-secondary px-4 d-inline-flex align-items-center justify-content-center"
+                                style="border-radius: 10px;"
+                            >
 
-                        </a>
+                                <i class="fa-solid fa-xmark me-1"></i>
 
-                        <button type="submit"
-                                class="btn btn-valcel rounded-3 px-4">
+                                Cancelar
 
-                            + Crear producto
+                            </a>
 
-                        </button>
+
+                            <button
+                                type="submit"
+                                class="btn-admin-primary px-4"
+                            >
+
+                                <i class="fa-solid fa-plus"></i>
+
+                                Crear producto
+
+                            </button>
+
+                        </div>
 
                     </div>
 
@@ -229,190 +281,176 @@
 
         </div>
 
+
+        {{-- FOOTER --}}
+        <div class="admin-page-footer">
+
+            <span>
+                Nuevo producto
+            </span>
+
+            <span>·</span>
+
+            <span>
+                Churros Valcel
+            </span>
+
+        </div>
+
     </div>
 
-</div>
+    {{-- ESTILOS ESPECÍFICOS --}}
+    @push('styles')
 
+    <style>
 
-<style>
+        /* ========================================
+        ESTADO DEL PRODUCTO
+        ======================================== */
 
-    /* ========================================
-       ICONO
-    ======================================== */
+        .product-status-option {
 
-    .icono-producto {
+            display: flex;
 
-        width: 52px;
-        height: 52px;
+            align-items: center;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+            gap: 14px;
 
-        background-color: #e7f4f5;
+            width: 100%;
 
-        border-radius: 15px;
+            padding: 16px;
 
-        font-size: 25px;
+            border: 1px solid #e9edf4;
 
-    }
+            border-radius: 14px;
 
+            cursor: pointer;
 
-    /* ========================================
-       INPUTS
-    ======================================== */
+            background: #fff;
 
-    .form-control,
-    .input-group-text {
+            transition:
+                border-color .2s ease,
+                background .2s ease,
+                box-shadow .2s ease,
+                transform .2s ease;
 
-        border-color: #e5e5e5;
+        }
 
-    }
 
+        .product-status-option:hover {
 
-    .form-control {
+            transform: translateY(-2px);
 
-        border-radius: 10px;
+            box-shadow:
+                0 6px 18px rgba(27,43,71,.06);
 
-    }
+        }
 
 
-    .form-control:focus {
+        .product-status-icon {
 
-        border-color: #7d1f24;
+            width: 42px;
 
-        box-shadow: 0 0 0 0.2rem rgba(125, 31, 36, 0.10);
+            height: 42px;
 
-    }
+            border-radius: 11px;
 
+            display: flex;
 
-    textarea.form-control {
+            align-items: center;
 
-        resize: vertical;
+            justify-content: center;
 
-    }
+            font-size: 19px;
 
+            flex-shrink: 0;
 
-    /* ========================================
-       ESTADO DEL PRODUCTO
-    ======================================== */
+        }
 
-    .estado-option {
 
-        display: flex;
+        .product-status-option strong {
 
-        align-items: center;
+            color: var(--valcel-text);
 
-        gap: 14px;
+            display: block;
 
-        width: 100%;
+            margin-bottom: 3px;
 
-        padding: 16px;
+        }
 
-        border: 1px solid #e5e5e5;
 
-        border-radius: 14px;
+        .product-status-option small {
 
-        cursor: pointer;
+            color: var(--valcel-muted);
 
-        transition: all .2s ease;
+            font-size: 13px;
 
-        background: #fff;
+        }
 
-    }
 
+        /* ACTIVO */
 
-    .estado-option:hover {
+        .active-option .product-status-icon {
 
-        border-color: #7d1f24;
+            color: var(--valcel-green);
 
-        background-color: #fafafa;
+            background: var(--valcel-green-light);
 
-    }
+        }
 
 
-    .estado-icon {
+        .active-option:hover {
 
-        width: 38px;
-        height: 38px;
+            border-color: #a8dfc8;
 
-        display: flex;
+        }
 
-        align-items: center;
-        justify-content: center;
 
-        border-radius: 10px;
+        /* INACTIVO */
 
-        font-size: 20px;
+        .inactive-option .product-status-icon {
 
-        font-weight: bold;
+            color: #d98b20;
 
-    }
+            background: var(--valcel-orange-light);
 
+        }
 
-    .estado-option.activo .estado-icon {
 
-        background-color: #e8f7ee;
+        .inactive-option:hover {
 
-        color: #198754;
+            border-color: #f1d09d;
 
-    }
+        }
 
 
-    .estado-option.inactivo .estado-icon {
+        /* SELECCIONADO */
 
-        background-color: #f8eaea;
+        .btn-check:checked + .active-option {
 
-        color: #7d1f24;
+            border-color: var(--valcel-green);
 
-    }
+            background: var(--valcel-green-light);
 
+            box-shadow:
+                0 0 0 2px rgba(32,168,115,.10);
 
-    /* Estado seleccionado */
+        }
 
-    .btn-check:checked + .estado-option {
 
-        border-color: #7d1f24;
+        .btn-check:checked + .inactive-option {
 
-        background-color: #fff8f8;
+            border-color: var(--valcel-orange);
 
-        box-shadow: 0 0 0 2px rgba(125, 31, 36, 0.08);
+            background: var(--valcel-orange-light);
 
-    }
+            box-shadow:
+                0 0 0 2px rgba(243,154,45,.10);
 
+        }
 
-    /* ========================================
-       BOTÓN VALCEL
-    ======================================== */
+    </style>
 
-    .btn-valcel {
-
-        background-color: #7d1f24;
-
-        color: white;
-
-        border: none;
-
-    }
-
-
-    .btn-valcel:hover {
-
-        background-color: #64191d;
-
-        color: white;
-
-        transform: translateY(-1px);
-
-    }
-
-
-    .btn {
-
-        transition: all .2s ease;
-
-    }
-
-</style>
+    @endpush
 
 @endsection

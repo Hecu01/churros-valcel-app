@@ -15,6 +15,7 @@
         {{-- Para instalar la app web desde chrome --}}
         <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
         <meta name="theme-color" content="#7d1f24">
+        @stack('styles')
     </head>
     <body>
         <nav id="navbarValcel"
@@ -460,7 +461,42 @@
         </style>
 
         <script>
-            
+
+            // Buscar clientes con AJAX
+            const inputBuscar = document.getElementById('buscarCliente');
+            const tablaClientes = document.getElementById('tabla-clientes');
+            const totalClientes = document.getElementById('total-clientes');
+
+            let temporizador;
+
+            inputBuscar.addEventListener('input', function () {
+
+                clearTimeout(temporizador);
+
+                const busqueda = this.value;
+
+                temporizador = setTimeout(() => {
+
+                    fetch(`{{ route('cliente.index') }}?buscar=${encodeURIComponent(busqueda)}`, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.text())
+                    .then(html => {
+
+                        tablaClientes.innerHTML = html;
+
+                    })
+                    .catch(error => {
+
+                        console.error('Error al buscar clientes:', error);
+
+                    });
+
+                }, 300);
+
+            });
             // Cambiar el estilo del navbar al hacer scroll
             window.addEventListener('scroll', function () {
 
