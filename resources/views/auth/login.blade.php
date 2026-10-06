@@ -221,7 +221,7 @@
             function togglePassword() {
 
                 const password = document.getElementById('password');
-                const icon = document.getElementById('password-icon');
+                const icon = document.getElementById('passwordIcon');
 
                 if (password.type === 'password') {
 
