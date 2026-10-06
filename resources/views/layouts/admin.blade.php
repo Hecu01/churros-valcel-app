@@ -115,7 +115,18 @@
                 </a>
 
             </nav>
+            <div class="sidebar-logout">
 
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+
+                    <button type="submit" class="sidebar-logout-btn">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Cerrar sesión</span>
+                    </button>
+                </form>
+
+            </div>
 
             {{-- Footer sidebar --}}
             <div class="sidebar-footer">

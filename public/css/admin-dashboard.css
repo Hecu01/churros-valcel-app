@@ -191,7 +191,44 @@
 
 }
 
+.sidebar-logout {
+    margin-top: auto;
+    padding-top: 20px;
+}
 
+.sidebar-logout form {
+    margin: 0;
+}
+
+.sidebar-logout-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px;
+
+    background: transparent;
+    color: rgba(255,255,255,.65);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.sidebar-logout-btn i {
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-logout-btn:hover {
+    background: rgba(255,255,255,.08);
+    color: #fff;
+}
 /* =========================================================
    SIDEBAR FOOTER
    ========================================================= */
