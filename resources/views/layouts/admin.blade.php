@@ -115,21 +115,66 @@
                 </a>
 
             </nav>
+
+            {{-- Usuario activo --}}
+            <div class="sidebar-user">
+
+                <div class="sidebar-user-avatar">
+                    {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                </div>
+
+                <div class="sidebar-user-info">
+
+                    <strong>
+                        {{ auth()->user()->name }}
+                    </strong>
+
+                    <small>
+                        Administrador
+                    </small>
+
+                </div>
+
+            </div>
             <div class="sidebar-logout">
 
-                <form action="{{ route('logout') }}" method="POST">
+                <form
+                    id="logoutForm"
+                    action="{{ route('logout') }}"
+                    method="POST"
+                >
                     @csrf
 
-                    <button type="submit" class="sidebar-logout-btn">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <span>Cerrar sesión</span>
+                    <button
+                        type="submit"
+                        id="logoutButton"
+                        class="sidebar-logout-btn"
+                    >
+
+                        <i
+                            id="logoutIcon"
+                            class="fa-solid fa-right-from-bracket"
+                        ></i>
+
+                        <span id="logoutText">
+                            Cerrar sesión
+                        </span>
+
+                        <span
+                            id="logoutSpinner"
+                            class="spinner-border spinner-border-sm d-none"
+                            role="status"
+                            aria-hidden="true"
+                        ></span>
+
                     </button>
+
                 </form>
 
             </div>
 
             {{-- Footer sidebar --}}
-            <div class="sidebar-footer">
+            {{-- <div class="sidebar-footer">
 
                 <i class="fa-regular fa-heart"></i>
 
@@ -141,7 +186,7 @@
                     Siempre calentitos
                 </span>
 
-            </div>
+            </div> --}}
 
         </aside>
 
@@ -161,7 +206,7 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
     </script>
 
-
+    <script src="{{ asset('js/admin.js') }}"></script>
     {{-- Scripts específicos --}}
     @stack('scripts')
 

@@ -24,7 +24,7 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->intended('/admin/inicio');
+            return redirect()->route('admin.index')->with('login_success', true);;
         }
 
         return back()->withErrors([

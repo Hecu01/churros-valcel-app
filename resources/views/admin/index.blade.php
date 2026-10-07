@@ -6,6 +6,38 @@
 
 @section('content')
 
+    @if (session('login_success'))
+
+        <div id="welcomeOverlay" class="welcome-overlay">
+
+            <div class="welcome-content">
+
+                <img
+                    src="{{ asset('images/logo-valcel.png') }}"
+                    alt="Churros Valcel"
+                    class="welcome-logo"
+                >
+
+                <div class="welcome-check">
+
+                    <i class="fa-solid fa-check"></i>
+
+                </div>
+
+                <h2>
+                    ¡Bienvenido, {{ auth()->user()->name }}!
+                </h2>
+
+                <p>
+                    Todo listo para comenzar.
+                </p>
+
+            </div>
+
+        </div>
+
+    @endif
+
 <div class="admin-page">
 
     {{-- CONTENIDO PRINCIPAL --}}

@@ -22,7 +22,318 @@
     --valcel-red: #8d1818;
 }
 
+/* =========================================================
+   ANIMACIÓN DE LOGOUT
+   ========================================================= */
 
+.logout-page-exit {
+    animation: logoutFadeOut 0.6s ease forwards;
+}
+
+
+@keyframes logoutFadeOut {
+
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.985);
+    }
+
+}
+
+
+/* Botón durante el cierre */
+
+#logoutButton.logout-loading {
+
+    pointer-events: none;
+
+    opacity: 0.75;
+
+}
+
+
+#logoutButton.logout-loading #logoutIcon {
+
+    display: none;
+
+}
+/* =========================================================
+   OVERLAY DE BIENVENIDA - CHURROS VALCEL
+   ========================================================= */
+
+.welcome-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgb(255, 255, 255);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+}
+
+
+/* =========================================================
+   ESTADO DE SALIDA
+   ========================================================= */
+
+.welcome-overlay.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+}
+
+
+/* =========================================================
+   CONTENIDO
+   ========================================================= */
+
+.welcome-content {
+
+    text-align: center;
+
+    padding: 30px;
+
+    animation: welcomeContentAppear 0.7s ease forwards;
+
+}
+
+
+/* =========================================================
+   ANIMACIÓN DEL CONTENIDO
+   ========================================================= */
+
+@keyframes welcomeContentAppear {
+
+    0% {
+
+        opacity: 0;
+
+        transform: translateY(20px) scale(0.96);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform: translateY(0) scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   CHECK DE ÉXITO
+   ========================================================= */
+
+.welcome-check {
+
+    width: 82px;
+
+    height: 82px;
+
+    margin: 0 auto 25px;
+
+    border-radius: 50%;
+
+    background: #7d1f24;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 36px;
+
+    box-shadow:
+        0 10px 30px rgba(125, 31, 36, 0.25);
+
+    animation: welcomeCheckAppear 0.7s ease forwards;
+
+}
+
+
+/* =========================================================
+   ANIMACIÓN DEL CHECK
+   ========================================================= */
+
+@keyframes welcomeCheckAppear {
+
+    0% {
+
+        opacity: 0;
+
+        transform: scale(0);
+
+    }
+
+    60% {
+
+        opacity: 1;
+
+        transform: scale(1.12);
+
+    }
+
+    80% {
+
+        transform: scale(0.96);
+
+    }
+
+    100% {
+
+        transform: scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.welcome-content h2 {
+
+    margin: 0;
+
+    color: #7d1f24;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+
+}
+
+
+/* =========================================================
+   TEXTO
+   ========================================================= */
+
+.welcome-content p {
+
+    margin-top: 8px;
+
+    margin-bottom: 0;
+
+    color: #6c757d;
+
+    font-size: 16px;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 576px) {
+
+    .welcome-content {
+
+        padding: 20px;
+
+    }
+
+
+    .welcome-check {
+
+        width: 70px;
+
+        height: 70px;
+
+        font-size: 30px;
+
+        margin-bottom: 20px;
+
+    }
+
+
+    .welcome-content h2 {
+
+        font-size: 25px;
+
+    }
+
+
+    .welcome-content p {
+
+        font-size: 15px;
+
+    }
+
+}
+.welcome-logo {
+
+    width: 95px;
+
+    height: 95px;
+
+    object-fit: contain;
+
+    margin-bottom: 15px;
+
+    animation: welcomeLogoAppear 0.6s ease forwards;
+
+}
+
+
+@keyframes welcomeLogoAppear {
+
+    0% {
+
+        opacity: 0;
+
+        transform: scale(0.7);
+
+    }
+
+    70% {
+
+        opacity: 1;
+
+        transform: scale(1.08);
+
+    }
+
+    100% {
+
+        transform: scale(1);
+
+    }
+
+}
 /* =========================================================
    ESTRUCTURA
    ========================================================= */
@@ -228,6 +539,50 @@
 .sidebar-logout-btn:hover {
     background: rgba(255,255,255,.08);
     color: #fff;
+}
+
+/* USER INFO */
+.sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    margin: 0 12px 10px;
+    border-top: 1px solid rgba(255,255,255,.08);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.sidebar-user-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #315bd6;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.sidebar-user-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.sidebar-user-info strong {
+    color: #fff;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-user-info small {
+    color: rgba(255,255,255,.55);
+    font-size: 12px;
+    margin-top: 2px;
 }
 /* =========================================================
    SIDEBAR FOOTER
